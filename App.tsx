@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import {Image, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Button, Image, ScrollView, StyleSheet, Text, TextInput, View,TouchableOpacity} from 'react-native';
 import {useState} from "react";
 
 const icons = {
@@ -11,76 +11,60 @@ const icons = {
     mute: require('./6351966_microphone_mute_record_song_sound_icon.png')
 }
 export default function App() {
-  const [name, setName] = useState("200");
-  var stat= 'https://http.cat/'+name
-   var numbers = ['ToDo', "Doing", 'Done', 'asfdas','afdsfad'];
-   var viewList=numbers.map(function (num, i){return (
-       <View>
-
-       </View>)
-   })
+    const [count, setCount] = useState(0);
     return (
     <View style={styles.container}>
-        <View style={{margin:10}}>
-        <View style={styles.buttonStart}>
-            <Image style={styles.imgVideo} source={icons.video}></Image>
-            <Text style={styles.text}>WHATSAPP CALL</Text>
-        </View>
-        <View ><Text style={styles.textBig} >Marc Johnson</Text></View>
-        <View ><Text style={styles.text}>CALLING</Text></View>
-        </View>
-        <View style={{alignItems:"baseline"}}><Image style={styles.imgBig}  source={icons.icon}></Image></View>
-        <View style={styles.center}>
-        <View style={styles.buttons}>
-            <Image style={styles.imgSmal} source={icons.sound}></Image>
-            <Image style={styles.imgSmal} source={icons.call}></Image>
-            <Image style={styles.imgSmal} source={icons.mute}></Image>
-        </View>
+        <View style={styles.Counter}>
+        <TouchableOpacity
+            style={styles.button}
+                onPress={() => setCount(count>0?count - 1:count)}>
+            <View style={styles.OptionView}>
+                <Text style={styles.OptionText}>-</Text>
+            </View>
+        </TouchableOpacity>
+            <View style={styles.OptionView}>
+                <Text style={styles.OptionText}>{count}</Text>
+            </View>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => setCount(count + 1)}>
+                <View style={styles.OptionView}>
+                    <Text style={styles.OptionText}>+</Text>
+                </View>
+            </TouchableOpacity>
         </View>
     </View>
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#276056',
+      flex: 1,
+      justifyContent: "center",
+      paddingHorizontal: 10
   },
-    text:{
-        fontSize:10,
-      color:`#FFF`
+    button: {
+        borderColor: "#000",
+        width: 100,
+        height: 100,
+        borderRadius: 20,
+        justifyContent: "center",
+        borderWidth: 1,
+        backgroundColor: "white",
     },
-    textBig:{
-        fontSize:30,
-        color:`#FFF`
+    OptionText: {
+    fontSize: 40,
+        color: "black"
+},
+    OptionView: {
+        flexDirection: "row",
+        justifyContent: "center"
     },
-    buttons:{
-      flexDirection:"row",
-        justifyContent: "space-around",
+    Counter: {
+        flexDirection: "row",
+        alignItems:"baseline",
+        justifyContent: "space-around"
+    },
 
-    },
-    center:{
-      flex:1,
-        justifyContent:"center",
-       alignContent:"center",
-
-    },
-    buttonStart:{
-        flexDirection:"row",
-        justifyContent: "flex-start",
-        marginBottom:5,
-    },
-    imgSmal:{
-      height:25,
-        width:25,
-    },
-    imgVideo:{
-        height:25,
-        width:25,
-        marginRight:45,
-    },
-    imgBig:{
-     height:300,
-      width:"100%",
-    },
 });
