@@ -3,4 +3,5 @@ export type RootStackParamList = {
     UserList: undefined;
     UserProfile: { userName: string };
     About: undefined;
+    ToDoLine:{ name: string,}
 };
