@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, View, Button, FlatList, TouchableOpacity, TextInput} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, {useCallback, useState} from 'react';
+import {StyleSheet, Text, View, Button, FlatList, TouchableOpacity, TextInput, ScrollView} from 'react-native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
+import TodoLine from "./ToDoLine";
 import { RootStackParamList } from './Pram';
 
 
@@ -11,42 +11,35 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
 
 function HomeScreen() {
     const navigation = useNavigation<NavigationProp>();
-    const [todos, setTodos] = useState([]);
-    const [text, setText] = useState('test');
+    const [todos, setTodos] = useState<string[]>([]);
+    const [text, setText] = useState<string>('test');
     const addTodo = () => {
-        if (text!=""){
-            let newTodos = [...todos];
-            newTodos.push(text);
-            setTodos(newTodos);
-            setText('add text');
+        if (!!text){
+            setTodos([...todos, text]);
         }
     };
-    const rmToDO = (index) => {
-        let newTodos = [...todos];
-        if (index !== -1) {
-            newTodos.splice(index, 1);
-        }
-        setTodos(newTodos);
-        setText('');
+    const rmToDo = (index:number) => {
+        let newTodos = todos.filter((_,i)=> i !== index);
+        setTodos([...newTodos]);
+        setText('gfht');
     };
-    const keyExtractor = (index) => {
-        return index.toString();
-    };
+
+
+    const onNavigateToDo= useCallback((index:number)=>
+         navigation.navigate("ToDo", {name:todos[index], onDelete: () => rmToDo(index)})
+    ,[todos, rmToDo])
 
     return (
         <View style={styles.container}>
             <View style={{ flex:1 ,marginTop:15}}>
                 <Text>NEW:</Text>
+                <ScrollView>
                 <FlatList
                     data={todos}
-                    keyExtractor={(item, index) => keyExtractor(index)}
-                    renderItem={({ item, index }) =>
-                        <View style={styles.todoLine}>
-                            <TouchableOpacity style={styles.todoLineTouch} onPress={() => { navigation.navigate('ToDoLine',{name:item}) }}>
-                                <Text style={{ flex: 3 }}>{item}</Text>
-                            </TouchableOpacity >
-                        </View>}
+                    keyExtractor={(_, index) => String(index)}
+                    renderItem={({ item , index }) => <TodoLine  name={item} onDelete={()=>rmToDo(index)} onNavigateToDo={()=>onNavigateToDo(index)}/>}
                 />
+                </ScrollView>
             </View>
             <View style={styles.footer}>
                 <View style={{ flex:6 }}>
@@ -67,18 +60,14 @@ function HomeScreen() {
     )
 }
 
+
+
 export default HomeScreen;
 
 const styles =StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: "center"
-    },
-    todoLine: {
-
-    },
-    todoLineTouch: {
-
     },
     textInput: {
         borderWidth: 1,
@@ -93,7 +82,7 @@ const styles =StyleSheet.create({
     button: {
         borderWidth: 1,
         borderColor: "black",
-        backgroundColor: "pink",
+        backgroundColor: "#fff",
         flex: 1,
         margin: 10
     }

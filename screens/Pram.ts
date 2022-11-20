@@ -3,5 +3,6 @@ export type RootStackParamList = {
     UserList: undefined;
     UserProfile: { userName: string };
     About: undefined;
-    ToDoLine:{ name: string,}
+    ToDo:{ name: string,onDelete : ()=>void }
+    ToDoLine:{ name: string,onDelete : ()=>void }
 };

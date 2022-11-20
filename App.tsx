@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeScreen from './screens/Home';
-import TodoLine from "./screens/TodoLine";
+import TodoLine from "./screens/Todo";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen name="Home" component={HomeScreen} />
-                <Stack.Screen name="ToDoLine" component={TodoLine} />
+                <Stack.Screen name="ToDo" component={TodoLine} />
             </Stack.Navigator>
         </NavigationContainer>
     );
