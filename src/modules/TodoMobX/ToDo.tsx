@@ -1,17 +1,12 @@
 import React, { FC, useState } from "react";
 import uuid from "react-native-uuid";
-import { KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput,Button,TouchableOpacity,TouchableWithoutFeedback,Keyboard, View,Dimensions,Platform} from "react-native";
+import { KeyboardAvoidingView, ScrollView, StyleSheet, TextInput,Button,TouchableWithoutFeedback,Keyboard, View,Dimensions,Platform} from "react-native";
 import { observer } from "mobx-react-lite";
 import TodoStore from "../../stores/TodoStore";
 import TodoItem from "./ToDoLine";
 import { Todo } from "../../models/Todo";
 
-import {NativeStackNavigationProp} from "@react-navigation/native-stack";
-import {RootStackParamList} from "../../models/Param";
-import {RouteProp} from "@react-navigation/native";
-import {CompatNativeSafeAreaProvider} from "react-native-safe-area-context/lib/typescript/CompatNativeSafeAreaProvider";
-type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'TodoScreen'>;
-type ToDoRouteProp = RouteProp<RootStackParamList, 'TodoScreen'>;
+
 const window = Dimensions.get('window');
 
 const TodoScreen: FC = observer(() => {
@@ -48,7 +43,7 @@ const TodoScreen: FC = observer(() => {
 </KeyboardAvoidingView>
 })
 
-export default TodoScreen
+export default TodoScreen;
 
 export const IMAGE_HEIGHT = window.width / 2;
 const styles =StyleSheet.create({

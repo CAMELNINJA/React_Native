@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthScreen from './src/modules/base/Auth';
 import TodoScreen from './src/modules/TodoMobX/ToDo'
+import Timer from './src/modules/Timer/Timer'
 import Home from './src/modules/Home';
 
 const Stack = createNativeStackNavigator();
@@ -20,6 +21,7 @@ export default function App() {
                 <Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="TodoScreen" component={TodoScreen} />
                 <Stack.Screen name="Auth" component={AuthScreen} />
+                <Stack.Screen name="Timer" component={Timer} />
             </Stack.Navigator>
         </NavigationContainer>
     );
