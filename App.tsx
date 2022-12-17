@@ -1,26 +1,35 @@
-import {StyleSheet, Text, TouchableOpacity, View,Button} from 'react-native';
-import {observer} from 'mobx-react-lite'
-import {makeAutoObservable} from "mobx";
+import { StatusBar } from 'expo-status-bar';
+import {useState} from "react";
+import React from 'react';
+import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
+import { StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AuthScreen from './src/modules/base/Auth';
+import TodoScreen from './src/modules/TodoMobX/ToDo'
+import Home from './src/modules/Home';
 
-class Clicker {
-    clicks = 0
+const Stack = createNativeStackNavigator();
 
-    constructor() {
-        makeAutoObservable(this)
-    }
+export default function App() {
 
-    addClick() {
-        this.clicks += 1
-    }
+    return (
+
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="Home">
+                <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen name="TodoScreen" component={TodoScreen} />
+                <Stack.Screen name="Auth" component={AuthScreen} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 }
 
-const clicker = new Clicker()
-
-const App = observer(() => (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>{clicker.clicks}</Text>
-        <Button onPress={() => clicker.addClick()} title="click" />
-    </View>
-))
-
-export default App;
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#d7d7d7',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});

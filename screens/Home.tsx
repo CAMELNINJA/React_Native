@@ -21,7 +21,7 @@ function HomeScreen() {
     const rmToDo = (index:number) => {
         let newTodos = todos.filter((_,i)=> i !== index);
         setTodos([...newTodos]);
-        setText('gfht');
+        setText('');
     };
 
 
