@@ -1,5 +1,5 @@
 import {makeAutoObservable} from "mobx";
-import timer from "../modules/Timer/Timer";
+
 
 class Timer {
     secondsPassed = 0;
@@ -13,10 +13,7 @@ class Timer {
         this.secondsPassed += 1;
     }
 
-    stopIncrease() {
-        console.log(`timer is dont stoped is log`);
 
-    }
 
     clearTimer() {
         console.log(`timer cleared`);

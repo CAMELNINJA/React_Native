@@ -15,16 +15,24 @@ function HomeScreen() {
     const onNavigateToDo= useCallback(() => navigation.navigate("TodoScreen"),[])
     const onNavigateAuth= useCallback(() => navigation.navigate("Auth"),[])
     const onNavigateTimer= useCallback(() => navigation.navigate("Timer"),[])
+    const onNavigateWeatherMain= useCallback(() => navigation.navigate("WeatherMain"),[])
+    const onNavigateProduct=useCallback(()=>navigation.navigate("Product"),[])
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={[styles.item, {padding: 4, borderRadius: 15 , backgroundColor: '#8582e8', height: 40, alignSelf: 'center', margin:10,}]} onPress={onNavigateToDo }>
+            <TouchableOpacity style={[styles.item]} onPress={onNavigateToDo }>
                 <Text style={{ fontSize: 20 , padding: 5,  }}>TodoMobX</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.item, {padding: 4, borderRadius: 15 , backgroundColor: '#8582e8', height: 40, alignSelf: 'center', margin:10,}]} onPress={onNavigateAuth }>
+            <TouchableOpacity style={[styles.item]} onPress={onNavigateAuth }>
                 <Text style={{ fontSize: 20, padding: 5, }}>Auth</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.item, {padding: 4, borderRadius: 15 , backgroundColor: '#8582e8', height: 40, alignSelf: 'center', margin:10,}]} onPress={onNavigateTimer }>
+            <TouchableOpacity style={[styles.item]} onPress={onNavigateTimer }>
                 <Text style={{ fontSize: 20, padding: 5, }}>Timer</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.item]} onPress={onNavigateWeatherMain }>
+                <Text style={{ fontSize: 20, padding: 5, }}>Weather</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.item]} onPress={onNavigateProduct }>
+                <Text style={{ fontSize: 20, padding: 5, }}>Product</Text>
             </TouchableOpacity>
         </View>
     )
@@ -57,5 +65,11 @@ const styles =StyleSheet.create({
     item:{
         justifyContent: "center",
         marginLeft: 10,
+        padding: 4,
+        borderRadius: 15 , 
+        backgroundColor: '#8582e8',
+        height: 40, 
+        alignSelf: 'center',
+        margin:10,
     },
 });
